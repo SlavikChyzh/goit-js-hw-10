@@ -59,7 +59,7 @@ function markUpCountryInformation(countryList) {
   countryInfoEl.insertAdjacentHTML(
     'beforeend',
     `<img src="${flags.svg}"
-  alt= "flag ${name.official}" width='100' height='auto'>
+  alt= "flag ${name.official}" width='150' height='100' >
   <h2>${name.official}</h2>
   <h3>Population : ${population}</h3
   <h3>Capital : ${capital}</h3>
