@@ -10,7 +10,7 @@ body {
   background-color: #fafafa;
   color: #212121;
   line-height: 1.5;
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
 }
 
