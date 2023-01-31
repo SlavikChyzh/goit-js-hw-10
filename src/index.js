@@ -28,8 +28,7 @@ function searchCountry(event) {
         Notify.info(
           ` Too many matches found. Please enter a more specific name.`
         );
-        clineMarkUp(countryListEl);
-        clineMarkUp(countryInfoEl);
+        clineMarkUp();
         return;
       } else if (countryList.length !== 1) {
         return markUpListOfCountries(countryList);
@@ -38,15 +37,13 @@ function searchCountry(event) {
       }
     })
     .catch(() => {
-      clineMarkUp(countryInfoEl);
-      clineMarkUp(countryListEl);
+      clineMarkUp();
       Notify.failure(` "Oops, there is no country with that name" `);
     });
 }
 
 function markUpListOfCountries(countryList) {
-  clineMarkUp(countryInfoEl);
-
+  clineMarkUp();
   const list = countryList.reduce((acc, { name, flags }) => {
     acc += `<li><img src="${flags.svg}"
   alt= "flag ${name.official}" width='45' height='30'> ${name.official}</li>`;
@@ -58,8 +55,7 @@ function markUpListOfCountries(countryList) {
 function markUpCountryInformation(countryList) {
   const { name, population, flags, languages, capital } = countryList[0];
 
-  clineMarkUp(countryListEl);
-
+  clineMarkUp();
   countryInfoEl.insertAdjacentHTML(
     'beforeend',
     `<img src="${flags.svg}"
@@ -72,7 +68,8 @@ function markUpCountryInformation(countryList) {
   );
 }
 
-function clineMarkUp(element) {
-  element.innerHTML = '';
+function clineMarkUp() {
+  countryInfoEl.innerHTML = '';
+  countryListEl.innerHTML = '';
   bodyEl.style.background = 'none';
 }
