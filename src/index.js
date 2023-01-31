@@ -10,6 +10,16 @@ const countryListEl = document.getElementById('country-list');
 const countryInfoEl = document.getElementById('country-info');
 
 inputEl.addEventListener('input', _.debounce(searchCountry, DEBOUNCE_DELAY));
+countryListEl.addEventListener('click', chooseCountry);
+
+function chooseCountry(event) {
+  if (event.target.nodeName !== 'LI') {
+    return;
+  }
+  const countryName = event.target.textContent;
+  inputEl.value = countryName;
+  inputEl.focus();
+}
 
 function searchCountry(event) {
   fetchCountries(event.target.value.trim())
@@ -38,7 +48,7 @@ function markUpListOfCountries(countryList) {
   clineMarkUp(countryInfoEl);
   const list = countryList.reduce((acc, { name, flags }) => {
     acc += `<li><img src="${flags.svg}"
-  alt= "flag ${name.official}" width='45' height='30'> >${name.official}</li>`;
+  alt= "flag ${name.official}" width='45' height='30'> ${name.official}</li>`;
     return acc;
   }, '');
   countryListEl.insertAdjacentHTML('beforeend', list);
