@@ -33,7 +33,7 @@ function searchCountry(event) {
         return;
       } else if (countryList.length !== 1) {
         return markUpListOfCountries(countryList);
-      } else {
+      } else if (countryList.length === 1) {
         markUpCountryInformation(countryList);
       }
     })
@@ -46,6 +46,7 @@ function searchCountry(event) {
 
 function markUpListOfCountries(countryList) {
   clineMarkUp(countryInfoEl);
+
   const list = countryList.reduce((acc, { name, flags }) => {
     acc += `<li><img src="${flags.svg}"
   alt= "flag ${name.official}" width='45' height='30'> ${name.official}</li>`;
@@ -55,9 +56,11 @@ function markUpListOfCountries(countryList) {
 }
 
 function markUpCountryInformation(countryList) {
+  const { name, population, flags, languages, capital } = countryList[0];
+
   clineMarkUp(countryListEl);
   bodyEl.style.backgroundImage = `url(${flags.svg})`;
-  const { name, population, flags, languages, capital } = countryList[0];
+
   countryInfoEl.insertAdjacentHTML(
     'beforeend',
     `<img src="${flags.svg}"
