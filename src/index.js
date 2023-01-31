@@ -59,11 +59,12 @@ function markUpCountryInformation(countryList) {
   const { name, population, flags, languages, capital } = countryList[0];
 
   clineMarkUp(countryListEl);
-  bodyEl.style.backgroundImage = `url(${flags.svg})`;
 
   countryInfoEl.insertAdjacentHTML(
     'beforeend',
-    `<h2>${name.official}</h2>
+    `<img src="${flags.svg}"
+  alt= "flag ${name.official}" width='100' height='auto'>
+  <h2>${name.official}</h2>
   <h3>Population : ${population}</h3
   <h3>Capital : ${capital}</h3>
   <h3>Languages : ${Object.values(languages).join(', ')}</h3>
